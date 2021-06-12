@@ -3,6 +3,7 @@ package com.nopcommerce.demo.testsuite;
 import com.nopcommerce.demo.pages.HomePage;
 import com.nopcommerce.demo.pages.LoginPage;
 import com.nopcommerce.demo.testbase.TestBase;
+import com.nopcommerce.demo.utility.Utility;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,8 @@ import org.testng.annotations.Test;
  */
 public class LoginTest extends TestBase {
 
+    private static String email = "test" + Utility.generateRandomNumber() + "yahoo.com";
+
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
 
@@ -18,7 +21,7 @@ public class LoginTest extends TestBase {
     @Test
     public void verifyUserShouldNavigateToLoginPage(){
         homePage.clickOnLoginLink();
-        String expectedMessage = "Welcome, Please Sign In!";
+        String expectedMessage = "Welcome, Please Sign In";
         String actualMessage = loginPage.getWelcomeText();
         Assert.assertEquals(actualMessage,expectedMessage);
     }
@@ -26,7 +29,7 @@ public class LoginTest extends TestBase {
     @Test
     public void verifyUserShouldNotLoginWithInvalidCredentials(){
         homePage.clickOnLoginLink();
-        loginPage.enterEmailId("abc@gmail.com");
+        loginPage.enterEmailId(email);
         loginPage.enterPassword("Abc123");
         loginPage.clickOnLoginButton();
         String expectedMessage = "Login was unsuccessful. Please correct the errors and try again.\n" +
