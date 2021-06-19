@@ -43,4 +43,10 @@ public class LoginPage extends Utility {
         sendTextToElement(emailField, email);
     }
 
+    public void loginToApplication(String username, String password){
+        enterEmailId(username);
+        enterPassword(password);
+        clickOnLoginButton();
+    }
+
 }
